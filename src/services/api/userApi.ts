@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { backendApi } from "./config";
 
 interface RegisterUserInterface {
