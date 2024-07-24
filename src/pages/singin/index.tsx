@@ -12,6 +12,7 @@ import { Button } from "../../components/button/button";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { registerUser } from "../../services/api/userApi";
+import { ErrorMessage } from "../../components/errorMessage/errorMessage";
 
 export function SingIn() {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ export function SingIn() {
     <div className="flex flex-col gap-3 justify-center items-center h-screen content-center">
       <Logo />
       <div className="max-w-3xl w-full flex flex-col justify-center items-center space-y-2.5">
-        {err !== "" && <span className="text-red-400">{err}</span>}
+        {err !== "" && <ErrorMessage message={err} />}
         <div className="text-lg bg-zinc-300 w-80 h-14 rounded-3xl flex justify-center items-center gap-2 p-5">
           <Building2 className="text-zinc-700 size-5" />
           <Input
