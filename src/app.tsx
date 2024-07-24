@@ -1,18 +1,13 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Login } from "./pages/login";
-import { SingIn } from "./pages/singin";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/singIn",
-    element: <SingIn />,
-  },
-]);
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/authProvider";
+import Routes from "./routes/routes";
 
 export function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </BrowserRouter>
+  );
 }
