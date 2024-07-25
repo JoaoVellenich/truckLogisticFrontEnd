@@ -29,6 +29,9 @@ const Routes = (props: Props) => {
       <Route element={<PrivateRoutes />}>
         <Route path="/truck" element={<Truck />} />
       </Route>
+      <Route element={<PrivateRoutes />}>
+        <Route path="/truck/:truckId" element={<Truck />} />
+      </Route>
     </Router>
   );
 };
