@@ -4,6 +4,7 @@ import { AuthContext } from "../context/authContext";
 import { Login } from "../pages/login";
 import { Home } from "../pages/home";
 import { SingIn } from "../pages/singin";
+import { Truck } from "../pages/truck";
 
 type Props = {};
 
@@ -24,6 +25,9 @@ const Routes = (props: Props) => {
       <Route path="/singIn" element={<SingIn />} />
       <Route element={<PrivateRoutes />}>
         <Route path="/home" element={<Home />} />
+      </Route>
+      <Route element={<PrivateRoutes />}>
+        <Route path="/truck" element={<Truck />} />
       </Route>
     </Router>
   );
