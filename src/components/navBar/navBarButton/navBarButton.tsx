@@ -10,7 +10,7 @@ export function NavBarButton({ title, isActive, ...props }: NavBarButtonProps) {
     <button
       {...props}
       className={`hover:bg-lime-100 rounded-r-3xl px-4 py-2 w-full ${
-        isActive ? `bg-lime-400` : ""
+        isActive ? `bg-lime-300` : ""
       }`}
     >
       <h2 className="text-xl">{title}</h2>
