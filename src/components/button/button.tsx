@@ -10,6 +10,7 @@ const buttonVariants = tv({
     },
     size: {
       big: "h-14 w-full",
+      medium: "h-10 w-full",
       small: "py-2",
     },
   },
