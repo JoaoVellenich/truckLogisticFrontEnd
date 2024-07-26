@@ -1,4 +1,5 @@
 import { TruckInterface } from "../../type/truckType";
+import { Button } from "../button/button";
 
 interface VehicleInfoProps {
   truck: TruckInterface;
@@ -21,6 +22,10 @@ export function VehicleInfo({ truck }: VehicleInfoProps) {
         <span className="font-semibold">Odometro</span>
         <span>{truck.km.toLocaleString("pt-br")}</span>
       </div>
+      <div className="w-full h-px bg-zinc-300"></div>
+      <Button size="medium" variant="secondary">
+        Apagar
+      </Button>
     </div>
   );
 }
