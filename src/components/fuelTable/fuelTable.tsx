@@ -11,12 +11,15 @@ import { TruckInterface } from "../../type/truckType";
 import { useEffect, useState } from "react";
 import { getFuelPage } from "../../services/api/fuel";
 import { FuelInterface } from "../../type/fuel";
+import { CreateFuelModal } from "./createFuelModal/fuelModal";
 
 interface FuelTableProps {
   truck: TruckInterface;
 }
 
 export function FuelTable({ truck }: FuelTableProps) {
+  const [isOpenCreateFuelModal, setIsOpenCreateFuelModal] = useState(false);
+
   const [fuels, setFuels] = useState<FuelInterface[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState("");
@@ -61,13 +64,18 @@ export function FuelTable({ truck }: FuelTableProps) {
     };
     setErr("");
     fetchData();
-  }, [currPage]);
+  }, [currPage, isOpenCreateFuelModal]);
 
   return (
     <div className="flex flex-1 flex-col w-full h-full bg-zinc-100 rounded-3xl px-4 py-2 gap-2">
       <div className="flex w-full justify-between items-center text-center">
         <span className="font-semibold">Combustivel</span>
-        <Button size="small">
+        <Button
+          size="small"
+          onClick={() => {
+            setIsOpenCreateFuelModal(true);
+          }}
+        >
           <CirclePlus className="size-5" />
           Cadastrar
         </Button>
@@ -87,7 +95,7 @@ export function FuelTable({ truck }: FuelTableProps) {
         ) : (
           <div className="flex flex-col gap-1">
             {fuels.map((fuel) => {
-              return <FuelCard fuel={fuel} />;
+              return <FuelCard key={fuel.id} fuel={fuel} />;
             })}
           </div>
         )}
@@ -103,7 +111,7 @@ export function FuelTable({ truck }: FuelTableProps) {
           <MoveLeft />
         </button>
         <span>
-          {currPage + 1} / {maxPage}
+          {fuels.length <= 0 ? 0 : currPage + 1} / {maxPage}
         </span>
         <button
           onClick={() => {
@@ -115,6 +123,13 @@ export function FuelTable({ truck }: FuelTableProps) {
           <MoveRight />
         </button>
       </div>
+
+      {isOpenCreateFuelModal && (
+        <CreateFuelModal
+          closeCreateFuelModal={() => setIsOpenCreateFuelModal(false)}
+          truckId={truck.id}
+        />
+      )}
     </div>
   );
 }
