@@ -22,7 +22,7 @@ export function VehicleCard({ Vehicle, isActive, ...props }: VehicleCardProps) {
     >
       <div>{Vehicle.plate}</div>
       <div className="flex flex-col justify-center">
-        <span className="text-xs">KM {Vehicle.km}</span>
+        <span className="text-xs">KM {Vehicle.km.toLocaleString("pt-br")}</span>
         <span className="text-xs overflow-hidden text-ellipsis">
           {Vehicle.description}
         </span>
