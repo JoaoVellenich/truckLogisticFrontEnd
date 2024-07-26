@@ -30,7 +30,6 @@ export function Login() {
       setErr("Email ou senha incorretos");
       return;
     }
-    console.log("Autenticado");
     setAuthenticated(true);
     navigate("/home");
   }

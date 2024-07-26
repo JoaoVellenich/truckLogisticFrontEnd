@@ -5,6 +5,8 @@ import { getTruckById, getTruckDetails } from "../../services/api/truckApi";
 import { useParams } from "react-router-dom";
 import { ShieldAlert } from "lucide-react";
 import { TruckInterface } from "../../type/truckType";
+import { VehicleInfo } from "../../components/vehicleInfo/vehicleInfo";
+import { FuelTable } from "../../components/fuelTable/fuelTable";
 
 export function Truck() {
   const [trucks, setTrucks] = useState([]);
@@ -31,8 +33,6 @@ export function Truck() {
     fetchData();
   }, [truckId]);
 
-  console.log(currTruck);
-
   return (
     <div>
       <div className="flex flex-row">
@@ -50,9 +50,15 @@ export function Truck() {
               </span>
             </div>
           ) : (
-            <div className="flex flex-1  items-center py-4">
-              <div className="flex flex-1 bg-red-500">a</div>
-              <div className="w-px h-full bg-zinc-800"></div>
+            <div className="flex flex-1 items-center">
+              <div className="flex flex-1 flex-col w-full h-screen px-4 py-4 gap-2">
+                <VehicleInfo truck={currTruck} />
+                <div className="w-full h-px bg-zinc-300"></div>
+                <div className="flex-1 flex-col w-full h-full overflow-hidden">
+                  <FuelTable truck={currTruck} />
+                </div>
+              </div>
+              <div className="w-px h-full bg-zinc-300"></div>
               <div className="flex flex-1 bg-blue-600">b</div>
             </div>
           )}
