@@ -14,8 +14,8 @@ export function FuelCard({ fuel }: FuelCardProps) {
           <span>{fuel.location}</span>
         </div>
         <div className="flex items-center gap-2">
-          <Calendar className="size-4" />
           <span>{fuel.date.split("T")[0]}</span>
+          <Calendar className="size-4" />
         </div>
       </div>
       <div className="flex justify-between">
@@ -35,6 +35,11 @@ export function FuelCard({ fuel }: FuelCardProps) {
         <div className="flex items-center gap-2">
           <span>{fuel.liters.toLocaleString("pt-br")}</span>
           <Fuel className="size-4" />
+        </div>
+      </div>
+      <div className="flex justify-end">
+        <div>
+          <span>{fuel.kmL.toLocaleString("pt-br")} Km/L</span>
         </div>
       </div>
     </div>
