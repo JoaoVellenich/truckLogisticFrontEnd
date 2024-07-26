@@ -9,3 +9,12 @@ export interface FuelInterface {
   liters: number;
   location: string;
 }
+
+export interface CreateFuel {
+  truckId: string;
+  date: string;
+  value: number;
+  km: number;
+  price: number;
+  location: string;
+}
