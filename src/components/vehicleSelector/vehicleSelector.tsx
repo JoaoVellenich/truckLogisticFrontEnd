@@ -28,6 +28,7 @@ export function VehicleSelector({ VehicleInfo }: VehicleSelectorProps) {
         VehicleInfo.map((vehicle) => {
           return (
             <VehicleCard
+              key={vehicle.id}
               onClick={() => {
                 navigate(`/truck/${vehicle.id}`);
               }}
