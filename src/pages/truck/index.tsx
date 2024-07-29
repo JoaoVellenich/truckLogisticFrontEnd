@@ -7,9 +7,11 @@ import { ShieldAlert } from "lucide-react";
 import { TruckInterface } from "../../type/truckType";
 import { VehicleInfo } from "../../components/vehicleInfo/vehicleInfo";
 import { FuelTable } from "../../components/fuelTable/fuelTable";
+import { TireManager } from "../../components/tireManager/tireManager";
 
 export function Truck() {
   const [trucks, setTrucks] = useState([]);
+  const [update, setUpdate] = useState(0);
   const [currTruck, setCurrtruck] = useState<TruckInterface>();
   const { truckId } = useParams();
 
@@ -31,7 +33,7 @@ export function Truck() {
       }
     };
     fetchData();
-  }, [truckId]);
+  }, [truckId, update]);
 
   return (
     <div>
@@ -55,11 +57,20 @@ export function Truck() {
                 <VehicleInfo truck={currTruck} />
                 <div className="w-full h-px bg-zinc-300"></div>
                 <div className="flex-1 flex-col w-full h-full overflow-hidden">
-                  <FuelTable truck={currTruck} />
+                  <FuelTable
+                    truck={currTruck}
+                    update={update}
+                    setUpdate={setUpdate}
+                  />
                 </div>
               </div>
               <div className="w-px h-full bg-zinc-300"></div>
-              <div className="flex flex-1 bg-blue-600">b</div>
+              <div className="flex flex-1 flex-col w-full h-screen px-4 py-4 gap-2">
+                <TireManager
+                  tires={currTruck.tires}
+                  axle={currTruck.numberOfAxle}
+                />
+              </div>
             </div>
           )}
         </div>
