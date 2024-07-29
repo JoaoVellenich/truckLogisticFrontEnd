@@ -12,6 +12,7 @@ const buttonVariants = tv({
       big: "h-14 w-full",
       medium: "h-10 w-full",
       small: "py-2",
+      smallWFull: "py-2 w-full h-8",
     },
   },
   defaultVariants: {
