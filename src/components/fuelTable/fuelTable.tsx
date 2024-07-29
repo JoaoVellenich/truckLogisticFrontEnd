@@ -15,9 +15,11 @@ import { CreateFuelModal } from "./createFuelModal/fuelModal";
 
 interface FuelTableProps {
   truck: TruckInterface;
+  update: number;
+  setUpdate: (update: number) => void;
 }
 
-export function FuelTable({ truck }: FuelTableProps) {
+export function FuelTable({ truck, update, setUpdate }: FuelTableProps) {
   const [isOpenCreateFuelModal, setIsOpenCreateFuelModal] = useState(false);
 
   const [fuels, setFuels] = useState<FuelInterface[]>([]);
@@ -126,6 +128,8 @@ export function FuelTable({ truck }: FuelTableProps) {
 
       {isOpenCreateFuelModal && (
         <CreateFuelModal
+          update={update}
+          setUpdate={setUpdate}
           closeCreateFuelModal={() => setIsOpenCreateFuelModal(false)}
           truckId={truck.id}
         />

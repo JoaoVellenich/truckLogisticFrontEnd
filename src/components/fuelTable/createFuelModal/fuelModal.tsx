@@ -5,6 +5,8 @@ import { createFuel } from "../../../services/api/fuel";
 import { ErrorMessage } from "../../errorMessage/errorMessage";
 
 interface CreateFuelModalProps {
+  update: number;
+  setUpdate: (update: number) => void;
   closeCreateFuelModal: () => void;
   truckId: string;
 }
@@ -12,6 +14,8 @@ interface CreateFuelModalProps {
 export function CreateFuelModal({
   closeCreateFuelModal,
   truckId,
+  setUpdate,
+  update,
 }: CreateFuelModalProps) {
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
@@ -39,11 +43,10 @@ export function CreateFuelModal({
     console.log(body);
     const response = await createFuel(body);
     if (response.status == 200) {
+      setUpdate(update + 1);
       closeCreateFuelModal();
       return;
     } else {
-      console.log("AQUI");
-      setErr("Dados invalidos");
       return;
     }
   }
