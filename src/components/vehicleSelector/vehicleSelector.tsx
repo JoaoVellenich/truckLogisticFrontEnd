@@ -14,9 +14,15 @@ interface VehicleInfo {
 
 interface VehicleSelectorProps {
   VehicleInfo: VehicleInfo[];
+  update: number;
+  setUpdate: (update: number) => void;
 }
 
-export function VehicleSelector({ VehicleInfo }: VehicleSelectorProps) {
+export function VehicleSelector({
+  VehicleInfo,
+  update,
+  setUpdate,
+}: VehicleSelectorProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -49,6 +55,8 @@ export function VehicleSelector({ VehicleInfo }: VehicleSelectorProps) {
       {isOpenCreateVehicleModal && (
         <CreateVehicleModal
           closeCreateVehicleModal={() => setIsOpenCreateVehicleModal(false)}
+          update={update}
+          setUpdate={setUpdate}
         />
       )}
     </div>

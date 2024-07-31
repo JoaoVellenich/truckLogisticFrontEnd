@@ -5,10 +5,14 @@ import { CreateTrailer } from "./createTrailer/createtrailer";
 
 interface CreateTruckModalProps {
   closeCreateVehicleModal: () => void;
+  update: number;
+  setUpdate: (update: number) => void;
 }
 
 export function CreateVehicleModal({
   closeCreateVehicleModal,
+  update,
+  setUpdate,
 }: CreateTruckModalProps) {
   const [isCreateTruck, setIsCreateTruck] = useState(true);
   return (
@@ -41,7 +45,11 @@ export function CreateVehicleModal({
           </button>
         </div>
         {isCreateTruck ? (
-          <CreateTruck closeCreateTruckModal={closeCreateVehicleModal} />
+          <CreateTruck
+            closeCreateTruckModal={closeCreateVehicleModal}
+            update={update}
+            setUpdate={setUpdate}
+          />
         ) : (
           <CreateTrailer />
         )}

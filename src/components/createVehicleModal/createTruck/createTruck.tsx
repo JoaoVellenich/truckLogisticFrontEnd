@@ -1,23 +1,57 @@
 import { CircleHelp, CreditCard, LifeBuoy } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../button/button";
+import { createNewTruck } from "../../../services/api/truckApi";
+import { CreateTruckBody } from "../../../type/truckType";
+import { ErrorMessage } from "../../errorMessage/errorMessage";
 
 interface CreateTruckProps {
   closeCreateTruckModal: () => void;
+  update: number;
+  setUpdate: (update: number) => void;
 }
 
-export function CreateTruck({ closeCreateTruckModal }: CreateTruckProps) {
+export function CreateTruck({
+  closeCreateTruckModal,
+  update,
+  setUpdate,
+}: CreateTruckProps) {
   const [plate, setPlate] = useState("");
   const [description, setDescription] = useState("");
   const [numberOfAxle, setNumberOfAxle] = useState(0);
   const [km, setKm] = useState(0);
   const [hasNewTires, setHasNewTires] = useState(true);
 
+  const [err, setErr] = useState("");
+
+  async function createTruck() {
+    setErr("");
+    if (!plate || !description || !numberOfAxle || !km) {
+      setErr("Preencha os campos corretamente");
+      return;
+    }
+    const body: CreateTruckBody = {
+      plate,
+      description,
+      km,
+      hasNewTires,
+      numberOfAxle,
+    };
+    const response = await createNewTruck(body);
+    if (!response) {
+      setErr("Dados errados");
+      return;
+    }
+    setUpdate(update + 1);
+    closeCreateTruckModal();
+  }
+
   return (
     <div className="flex flex-1 w-full flex-col justify-center items-center gap-2">
       <div>
         <span className="font-semibold">Criar Caminhão</span>
       </div>
+      <ErrorMessage message={err} />
       <div className="flex flex-row w-full bg-zinc-50 rounded-3xl px-2 py-2 items-center gap-2">
         <CreditCard className="size-4" />
         <input
@@ -74,7 +108,7 @@ export function CreateTruck({ closeCreateTruckModal }: CreateTruckProps) {
         >
           Cancelar
         </Button>
-        <Button size="medium" onClick={() => {}}>
+        <Button size="medium" onClick={createTruck}>
           Cadastrar
         </Button>
       </div>
