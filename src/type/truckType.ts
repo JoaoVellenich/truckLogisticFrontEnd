@@ -11,3 +11,11 @@ export interface TruckInterface {
   numberOfAxle: number;
   expenses: null;
 }
+
+export interface CreateTruckBody {
+  plate: string;
+  description: string;
+  km: number;
+  hasNewTires: boolean;
+  numberOfAxle: number;
+}
