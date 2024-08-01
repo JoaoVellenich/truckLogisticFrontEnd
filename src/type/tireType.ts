@@ -3,4 +3,5 @@ export interface Tire {
   km: number;
   position: number;
   belongsTo: string;
+  description: string;
 }
