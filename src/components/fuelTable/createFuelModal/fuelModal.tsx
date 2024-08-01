@@ -40,7 +40,6 @@ export function CreateFuelModal({
       price,
       location,
     };
-    console.log(body);
     const response = await createFuel(body);
     if (response.status == 200) {
       setUpdate(update + 1);
