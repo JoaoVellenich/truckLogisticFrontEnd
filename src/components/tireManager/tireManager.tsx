@@ -1,6 +1,4 @@
-import { ArrowLeftRight } from "lucide-react";
 import { Tire } from "../../type/tireType";
-import { Button } from "../button/button";
 import { TireTable } from "./tireTable/tireTable";
 
 interface TireManagerProps {
