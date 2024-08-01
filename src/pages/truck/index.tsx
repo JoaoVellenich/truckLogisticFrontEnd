@@ -25,6 +25,14 @@ export function Truck() {
 
   useEffect(() => {
     const fetchData = async () => {
+      const response = await getTruckDetails();
+      setTrucks(response);
+    };
+    fetchData();
+  }, [update]);
+
+  useEffect(() => {
+    const fetchData = async () => {
       if (truckId) {
         const response = await getTruckById(truckId);
         if (response.status == 200) {
@@ -40,7 +48,11 @@ export function Truck() {
       <div className="flex flex-row">
         <NavBar />
         <div>
-          <VehicleSelector VehicleInfo={trucks} />
+          <VehicleSelector
+            VehicleInfo={trucks}
+            update={update}
+            setUpdate={setUpdate}
+          />
         </div>
         <div className="flex flex-1">
           {!currTruck ? (
@@ -67,6 +79,8 @@ export function Truck() {
               <div className="w-px h-full bg-zinc-300"></div>
               <div className="flex flex-1 flex-col w-full h-screen px-4 py-4 gap-2">
                 <TireManager
+                  update={update}
+                  setUpdate={setUpdate}
                   tires={currTruck.tires}
                   axle={currTruck.numberOfAxle}
                 />
