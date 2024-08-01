@@ -3,6 +3,7 @@ import { Button } from "../../button/button";
 import { useState } from "react";
 import { ChangeTireToNewOne } from "../../../services/api/tire";
 import { Tire } from "../../../type/tireType";
+import { ErrorMessage } from "../../errorMessage/errorMessage";
 
 interface ChangeTireModalProps {
   closeModal: () => void;
@@ -63,6 +64,7 @@ export function ChangeTireModal({
           </div>
         </div>
         <div className="w-full h-px bg-zinc-300"></div>
+        <ErrorMessage message={err} />
         <div className="flex flex-row w-full bg-zinc-50 rounded-3xl px-2 py-2 items-center gap-2">
           <Hash className="size-4" />
           <input
