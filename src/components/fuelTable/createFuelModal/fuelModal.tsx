@@ -3,6 +3,7 @@ import { Button } from "../../button/button";
 import { useState } from "react";
 import { createFuel } from "../../../services/api/fuel";
 import { ErrorMessage } from "../../errorMessage/errorMessage";
+import { ModalHeader } from "../../modalElements/modalHeader";
 
 interface CreateFuelModalProps {
   update: number;
@@ -53,12 +54,10 @@ export function CreateFuelModal({
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
       <div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-100 space-y-5">
-        <div className="flex items-center justify-between">
-          <span className="font-semibold">Cadastrar abastecimento</span>
-          <button onClick={closeCreateFuelModal}>
-            <X className="size-5 text-zinc-400" />
-          </button>
-        </div>
+        <ModalHeader
+          close={closeCreateFuelModal}
+          modalName="Cadastrar abastecimento"
+        />
         {err && (
           <div className="flex justify-center items-center">
             <ErrorMessage message={err} />

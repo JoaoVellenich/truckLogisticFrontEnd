@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChangeTireToNewOne } from "../../../services/api/tire";
 import { Tire } from "../../../type/tireType";
 import { ErrorMessage } from "../../errorMessage/errorMessage";
+import { ModalHeader } from "../../modalElements/modalHeader";
 
 interface ChangeTireModalProps {
   closeModal: () => void;
@@ -44,12 +45,7 @@ export function ChangeTireModal({
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
       <div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-100 space-y-5">
-        <div className="flex items-center justify-between">
-          <span className="font-semibold">Trocar Pneu</span>
-          <button onClick={closeModal}>
-            <X className="size-5 text-zinc-400" />
-          </button>
-        </div>
+        <ModalHeader close={closeModal} modalName="Trocar Pneu" />
         <div className="w-full h-px bg-zinc-300"></div>
         <div>
           <span className="font-semibold">Pneu em uso</span>
