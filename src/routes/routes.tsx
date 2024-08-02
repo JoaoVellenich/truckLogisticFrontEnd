@@ -5,6 +5,7 @@ import { Login } from "../pages/login";
 import { Home } from "../pages/home";
 import { SingIn } from "../pages/singin";
 import { Truck } from "../pages/truck";
+import { Configuration } from "../pages/configuration";
 
 type Props = {};
 
@@ -31,6 +32,9 @@ const Routes = (props: Props) => {
       </Route>
       <Route element={<PrivateRoutes />}>
         <Route path="/truck/:truckId" element={<Truck />} />
+      </Route>
+      <Route element={<PrivateRoutes />}>
+        <Route path="/config" element={<Configuration />} />
       </Route>
     </Router>
   );
